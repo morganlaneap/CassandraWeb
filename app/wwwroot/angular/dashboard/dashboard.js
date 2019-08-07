@@ -1,11 +1,11 @@
 cassandraWeb.controller('dashboardController', function ($scope, ConnectionService) {
     const newConnectionFormSchema = {
         connectionId: null,
-        connectionName: '',
-        contactPoint: '',
-        port: 0,
-        username: '',
-        password: ''
+        connectionName: 'test',
+        contactPoint: 'test',
+        port: 1220,
+        username: 'ddd',
+        password: 'xxxx'
     }
     
     $scope.connectionList = [];

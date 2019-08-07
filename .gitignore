@@ -366,4 +366,6 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/visualstudio,visualstudiocode
 
-CassandraWeb.db3
+*.db3
+*.db3-shm
+*.db3-wal

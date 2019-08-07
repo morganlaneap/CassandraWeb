@@ -26,7 +26,7 @@ namespace CassandraWeb.Controllers
             }
         }
 
-        // TODO: fix this, no data being passed through
+        // TODO: this should be receiving json data
         [Route("NewConnection")]
         [HttpPost]
         public IActionResult NewConnection(Connection data)

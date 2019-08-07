@@ -6,18 +6,17 @@ cassandraWeb.service("ConnectionService", function($http) {
     });
   };
   this.newConnection = function(formData) {
-    console.log(formData);
     return $http({
       method: "POST",
       url: API_URL() + "Connection/NewConnection",
-      data: formData
+      params: formData
     });
   };
   this.deleteConnection = function(id) {
     return $http({
       method: "POST",
       url: API_URL() + "Connection/DeleteConnection",
-      params: {
+      params: { // TODO: work out a better way to post the data
         connectionId: id
       }
     });
