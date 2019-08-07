@@ -2,10 +2,24 @@
 <html>
 <head>
     <title>Azure Cassandra Web</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" />
+    <link rel="stylesheet" href="/css/app.css" />
 </head>
 <body ng-app="cassandraWeb" ng-cloak>
-    <div ui-view="dashboard"></div>
+    <div class="container page-container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Cassandra Web</h2>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div ui-view="dashboard"></div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.7.8/angular-sanitize.min.js"></script>
