@@ -39,8 +39,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="table in selectedKeyspace.tables">
-            <td>{{ table.tableName }}</td>
+          <tr ng-repeat="table in selectedKeyspace.tables" >
+            <td><a ui-sref="connectionTable({connectionId: connectionId, keyspaceName: table.keyspaceName, tableName: table.tableName})">{{ table.tableName }}</a></td>
             <td style="width: 170px;">2.48 KB</td>
           </tr>
         </tbody>

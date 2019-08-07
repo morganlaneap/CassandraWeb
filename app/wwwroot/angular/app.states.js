@@ -18,5 +18,15 @@ cassandraWeb.config(function($stateProvider) {
         }
       }
     });
+
+    $stateProvider.state('connectionTable', {
+      url: '/connection/:connectionId/keyspace/:keyspaceName/table/:tableName',
+      views: {
+        'content': {
+          templateUrl: '/angular/connection/table.html',
+          controller: 'connectionTableController',
+        }
+      }
+    });
   });
   
