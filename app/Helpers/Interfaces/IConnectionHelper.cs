@@ -5,6 +5,6 @@ namespace CassandraWeb.Helpers.Interfaces {
     public interface IConnectionHelper : IDisposable {
         List<Connection> GetConnections();
         Connection NewConnection(Connection newConnectionData);
-        bool DeleteConnection(int connectionId);
+        bool DeleteConnection(Guid connectionId);
     }
 }

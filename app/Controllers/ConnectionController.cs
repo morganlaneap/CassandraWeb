@@ -47,7 +47,7 @@ namespace CassandraWeb.Controllers
 
         [Route("DeleteConnection")]
         [HttpPost]
-        public IActionResult DeleteConnection(int connectionId) {
+        public IActionResult DeleteConnection(Guid connectionId) {
             try
             {
                 using (ConnectionHelper helper = new ConnectionHelper())

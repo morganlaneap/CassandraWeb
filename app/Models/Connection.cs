@@ -1,11 +1,12 @@
 using SQLite;
+using System;
 namespace CassandraWeb.Models
 {
     [Table("Connections")]
     public class Connection
     {
         [PrimaryKey, AutoIncrement]
-        public int ConnectionId { get; set; }
+        public Guid ConnectionId { get; set; }
         public string ConnectionName { get; set; }
         public string ContactPoint { get; set; }
         public int Port { get; set; }

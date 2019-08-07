@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using CassandraWeb.Helpers.Interfaces;
 using CassandraWeb.Models;
 using CassandraWeb.Database;
+using System;
 namespace CassandraWeb.Helpers
 {
     public class ConnectionHelper : IConnectionHelper
@@ -29,7 +30,7 @@ namespace CassandraWeb.Helpers
             }
         }
 
-        public bool DeleteConnection(int connectionId) {
+        public bool DeleteConnection(Guid connectionId) {
              using (DatabaseHelper<Connection> helper = new DatabaseHelper<Connection>())
             {
                 helper.DeleteByPrimaryKey(connectionId);
