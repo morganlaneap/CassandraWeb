@@ -16,6 +16,7 @@ namespace CassandraWeb.Helpers
     public class CassandraHelper : ICassandraHelper
     {
         const string GetKeyspacesQuery = "SELECT * FROM system_schema.keyspaces;";
+        const string GetTablesInKeyspaceQuery = "SELECT * FROM system_schema.tables WHERE keyspace_name = '{0}';";
 
         public void Dispose()
         {
@@ -39,7 +40,7 @@ namespace CassandraWeb.Helpers
                    .Build();
         }
 
-        private bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        public bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
             return sslPolicyErrors == SslPolicyErrors.None;
         }
@@ -52,6 +53,18 @@ namespace CassandraWeb.Helpers
                     {
                         KeyspaceName = row.GetValue<string>(0)
                     }).ToList();
+        }
+
+        public List<Table> GetTablesInKeyspace(string keyspaceName)
+        {
+            ISession session = cluster.Connect();
+            return (from row in session.Execute(string.Format(GetTablesInKeyspaceQuery, keyspaceName)).ToList()
+                    select new Table
+                    {
+                        KeyspaceName = row.GetValue<string>("keyspace_name"),
+                        TableName = row.GetValue<string>("table_name")
+                    }
+            ).ToList();
         }
     }
 }

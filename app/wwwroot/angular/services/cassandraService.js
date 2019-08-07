@@ -8,4 +8,14 @@ cassandraWeb.service("CassandraService", function($http) {
       }
     });
   };
+  this.getTablesInKeyspace = function(connectionId, keyspaceName) {
+    return $http({
+      method: "POST",
+      url: API_URL() + "Cassandra/GetTablesInKeyspace",
+      params: {
+        connectionId: connectionId,
+        keyspaceName: keyspaceName
+      }
+    });
+  }
 });
