@@ -1,35 +1,133 @@
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <h3><i class="fas fa-tachometer-alt"></i>Dashboard</h3>
-        </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <h3><i class="fas fa-tachometer-alt"></i>Dashboard</h3>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <p>Welcome to Cassandra Web for Azure Cosmos DB. Please select an existing connection from below or click "New Connection" to get started.</p>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <p>
+        Welcome to Cassandra Web for Azure Cosmos DB. Please select an existing
+        connection from below or click "New Connection" to get started.
+      </p>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <button type="button" class="btn btn-primary">New Connection</button>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#newConnectionModal"
+      >
+        New Connection
+      </button>
     </div>
-    <div class="row">
-        <div class="col-lg-12" ng-show="connectionList.length === 0">
-            <p>You have no connections defined.</p>
-        </div>
-        <div class="col-lg-4" ng-repeat="connection in connectionList" ng-show="connectionList.length > 0">
-            <div class="card border-primary">
-                <div class="card-header">
-                   {{connection.connectionName}}
-                </div>
-                <div class="card-body">                    
-                    <p class="connection-url">{{connection.contactPoint}}:{{connection.port}}</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-sm btn-primary">Connect</button>
-                </div>
-            </div>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12" ng-show="connectionList.length === 0">
+      <p>You have no connections defined.</p>
     </div>
+    <div
+      class="col-lg-4"
+      ng-repeat="connection in connectionList"
+      ng-show="connectionList.length > 0"
+    >
+      <div class="card border-primary">
+        <div class="card-header">
+          {{ connection.connectionName }}
+        </div>
+        <div class="card-body">
+          <p class="connection-url">
+            {{ connection.contactPoint }}:{{ connection.port }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-sm btn-primary">Connect</button>
+          <button type="button" class="btn btn-sm btn-danger" ng-click="deleteConnection(connection.connectionId);">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="newConnectionModal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form ng-submit="newConnectionSubmit();">
+        <div class="modal-header">
+          <h5 class="modal-title">New Connection</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Connection Name</label>
+            <input
+              type="text"
+              ng-model="newConnectionForm.connectionName"
+              required
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label>Contact Point</label>
+            <input
+              type="text"
+              ng-model="newConnectionForm.contactPoint"
+              required
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label>Port</label>
+            <input
+              type="number"
+              min="1"
+              max="65000"
+              ng-model="newConnectionForm.port"
+              required
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label>Username</label>
+            <input
+              type="text"
+              ng-model="newConnectionForm.username"
+              required
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input
+              type="text"
+              ng-model="newConnectionForm.password"
+              required
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Add Connection</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

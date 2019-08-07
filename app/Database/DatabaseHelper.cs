@@ -30,7 +30,10 @@ namespace CassandraWeb.Database
         }
         public void Delete(T model)
         {
-            database.Delete(model);
+            database.Delete<T>(model);
+        }
+        public void DeleteByPrimaryKey(object primaryKey) {
+            database.Delete<T>(primaryKey);
         }
     }
 }

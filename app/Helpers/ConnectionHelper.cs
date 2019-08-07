@@ -6,6 +6,11 @@ namespace CassandraWeb.Helpers
 {
     public class ConnectionHelper : IConnectionHelper
     {
+        public void Dispose()
+        {
+            // TODO: add some logic here
+        }
+
         public List<Connection> GetConnections()
         {
             using (DatabaseHelper<Connection> helper = new DatabaseHelper<Connection>())
@@ -13,9 +18,23 @@ namespace CassandraWeb.Helpers
                 return helper.GetAll();
             }
         }
-        public void Dispose()
+
+        public Connection NewConnection(Connection newConnectionData)
         {
-            // TODO: add some logic here
+            using (DatabaseHelper<Connection> helper = new DatabaseHelper<Connection>())
+            {
+                helper.Insert(newConnectionData);
+                // TODO: get id of inserted row
+                return newConnectionData;
+            }
+        }
+
+        public bool DeleteConnection(int connectionId) {
+             using (DatabaseHelper<Connection> helper = new DatabaseHelper<Connection>())
+            {
+                helper.DeleteByPrimaryKey(connectionId);
+                return true;
+            }
         }
     }
 }

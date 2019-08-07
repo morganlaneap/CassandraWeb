@@ -22,7 +22,43 @@ namespace CassandraWeb.Controllers
             }
             catch (Exception exception)
             {
-                return NotFound(exception);
+                return BadRequest(exception);
+            }
+        }
+
+        // TODO: fix this, no data being passed through
+        [Route("NewConnection")]
+        [HttpPost]
+        public IActionResult NewConnection(Connection data)
+        {
+            try
+            {
+                using (ConnectionHelper helper = new ConnectionHelper())
+                {
+                    Connection newConnection = helper.NewConnection(data);
+                    return Ok(newConnection);
+                }
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception);
+            }
+        }
+
+        [Route("DeleteConnection")]
+        [HttpPost]
+        public IActionResult DeleteConnection(int connectionId) {
+            try
+            {
+                using (ConnectionHelper helper = new ConnectionHelper())
+                {
+                    helper.DeleteConnection(connectionId);
+                    return Ok(connectionId);
+                }
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception);
             }
         }
     }
