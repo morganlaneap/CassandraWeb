@@ -33,14 +33,14 @@
       ng-repeat="connection in connectionList"
       ng-show="connectionList.length > 0"
     >
-      <div class="card border-primary">
+      <div class="card border-primary connection-card">
         <div class="card-header">
           {{ connection.connectionName }}
         </div>
         <div class="card-body">
-          <p class="connection-url">
+          <span class="connection-url">
             {{ connection.contactPoint }}:{{ connection.port }}
-          </p>
+          </span>
         </div>
         <div class="card-footer">
           <button type="button" class="btn btn-sm btn-primary">Connect</button>

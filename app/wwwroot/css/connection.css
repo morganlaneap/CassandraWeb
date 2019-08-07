@@ -1,3 +1,7 @@
 .connection-url {
     font-weight: 300;
 }
+
+.connection-card {
+    margin-bottom: 30px;
+}

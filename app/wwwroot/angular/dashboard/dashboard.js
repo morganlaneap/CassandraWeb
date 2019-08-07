@@ -1,19 +1,22 @@
-cassandraWeb.controller('dashboardController', function ($scope, ConnectionService) {
-    const newConnectionFormSchema = {
-        connectionId: null,
-        connectionName: 'test',
-        contactPoint: 'test',
-        port: 1220,
-        username: 'ddd',
-        password: 'xxxx'
-    }
-    
+cassandraWeb.controller('dashboardController', function ($scope, ConnectionService, ngToast) {
     $scope.connectionList = [];
-    $scope.newConnectionForm = newConnectionFormSchema;
+    $scope.newConnectionForm = {};
     
     $scope.init = function () {
         $scope.getConnections();
+        $scope.clearNewConnectionForm();
     };
+
+    $scope.clearNewConnectionForm = function () {
+        $scope.newConnectionForm = {
+            connectionId: null,
+            connectionName: '',
+            contactPoint: '',
+            port: 0,
+            username: '',
+            password: ''
+        };
+    }; 
 
     $scope.getConnections = function () {
         ConnectionService.getConnections().then(function (success) {
@@ -27,6 +30,8 @@ cassandraWeb.controller('dashboardController', function ($scope, ConnectionServi
         ConnectionService.newConnection($scope.newConnectionForm).then(function (success) {
             $scope.getConnections();
             jQuery('#newConnectionModal').modal('hide');
+            ngToast.create('Connection created!');
+            $scope.clearNewConnectionForm();
         }, function (error) {
             // TODO: add something handle this here
         });
@@ -34,7 +39,8 @@ cassandraWeb.controller('dashboardController', function ($scope, ConnectionServi
 
     $scope.deleteConnection = function (connectionId) {
         ConnectionService.deleteConnection(connectionId).then(function (success) {
-            $scope.getConnections();            
+            $scope.getConnections();     
+            ngToast.create('Connection deleted!');       
         }, function (error) {
             // TODO: add something handle this here
         });
