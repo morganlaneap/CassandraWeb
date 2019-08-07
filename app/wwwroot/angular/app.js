@@ -1,0 +1,1 @@
+var cassandraWeb = angular.module('cassandraWeb', ['ngSanitize', 'ui.router', 'ngStorage']);
