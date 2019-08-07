@@ -17,5 +17,16 @@ cassandraWeb.service("CassandraService", function($http) {
         keyspaceName: keyspaceName
       }
     });
+  };
+  this.getTableSchema = function(connectionId, keyspaceName, tableName) {
+    return $http({
+      method: "POST",
+      url: API_URL() + "Cassandra/GetTableSchema",
+      params: {
+        connectionId: connectionId,
+        keyspaceName: keyspaceName,
+        tableName: tableName
+      }
+    });
   }
 });

@@ -53,5 +53,28 @@ namespace CassandraWeb.Controllers
                 return BadRequest(exception);
             }
         }
+
+        [Route("GetTableSchema")]
+        [HttpPost]
+        public IActionResult GetTableSchema(Guid connectionId, string keyspaceName, string tableName)
+        {
+            try
+            {
+                using (ConnectionHelper connectionHelper = new ConnectionHelper())
+                {
+                    Connection connection = connectionHelper.GetConnectionById(connectionId);
+
+                    using (CassandraHelper cassandraHelper = new CassandraHelper(connection))
+                    {
+                        Table table = cassandraHelper.GetTableSchema(keyspaceName, tableName);
+                        return Ok(table);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception);
+            }
+        }
     }
 }

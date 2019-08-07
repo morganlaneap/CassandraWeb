@@ -10,5 +10,6 @@ namespace CassandraWeb.Helpers.Interfaces
         bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors);
         List<Keyspace> GetKeyspaces();
         List<Table> GetTablesInKeyspace(string keyspaceName);
+        Table GetTableSchema(string keyspaceName, string tableName);
     }
 }
