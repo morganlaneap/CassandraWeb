@@ -20,6 +20,9 @@ namespace CassandraWeb.Database
         public List<T> GetAll() {
             return database.Table<T>().ToList();
         }
+        public T GetByPrimaryKey(object primaryKey) {
+            return database.Get<T>(primaryKey);
+        }
         public void Insert(T model)
         {
             database.Insert(model);

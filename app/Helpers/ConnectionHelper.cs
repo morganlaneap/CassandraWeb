@@ -20,6 +20,13 @@ namespace CassandraWeb.Helpers
             }
         }
 
+        public Connection GetConnectionById(Guid connectionId) {
+             using (DatabaseHelper<Connection> helper = new DatabaseHelper<Connection>())
+            {
+                return helper.GetByPrimaryKey(connectionId);
+            }
+        }
+
         public Connection NewConnection(Connection newConnectionData)
         {
             using (DatabaseHelper<Connection> helper = new DatabaseHelper<Connection>())
