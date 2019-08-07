@@ -9,4 +9,27 @@
             <p>Welcome to Cassandra Web for Azure Cosmos DB. Please select an existing connection from below or click "New Connection" to get started.</p>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <button type="button" class="btn btn-primary">New Connection</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12" ng-show="connectionList.length === 0">
+            <p>You have no connections defined.</p>
+        </div>
+        <div class="col-lg-4" ng-repeat="connection in connectionList" ng-show="connectionList.length > 0">
+            <div class="card border-primary">
+                <div class="card-header">
+                   {{connection.connectionName}}
+                </div>
+                <div class="card-body">                    
+                    <p class="connection-url">{{connection.contactPoint}}:{{connection.port}}</p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-sm btn-primary">Connect</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

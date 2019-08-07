@@ -5,3 +5,8 @@ h3 > i.fa, h3 > i.fas {
 .page-container {
     padding: 20px;
 }
+
+.row {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
