@@ -1,10 +1,6 @@
 cassandraWeb.controller('connectionTableController', function ($scope, CassandraService, ngToast, $stateParams) {
     $scope.table = null;
-    $scope.newColumn = {
-        columnName: '',
-        dataType: ''
-    };
-    
+
     $scope.init = function () {
         $scope.connectionId = $stateParams.connectionId;
         $scope.keyspaceName = $stateParams.keyspaceName;
@@ -20,11 +16,11 @@ cassandraWeb.controller('connectionTableController', function ($scope, Cassandra
         });
     };
 
-    $scope.addTableColumn = function () {
+    $scope.addTableColumn = function (newColumn) {
         // TODO: add some validation here
-        CassandraService.addTableColumn($scope.connectionId, $scope.keyspaceName, $scope.tableName, $scope.newColumn).then(function (success) {
+        CassandraService.addTableColumn($scope.connectionId, $scope.keyspaceName, $scope.tableName, newColumn).then(function (success) {
             $scope.getTableSchema();
-            ngToast.create(`Column ${$scope.newColumn.columnName} has been added.`);
+            ngToast.create(`Column ${newColumn.columnName} has been added.`);
         }, function (error) {
             // TODO: add something here
         });

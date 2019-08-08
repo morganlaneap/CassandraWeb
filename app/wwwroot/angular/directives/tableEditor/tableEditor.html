@@ -1,0 +1,38 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Column Name</th>
+            <th>Data Type</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="column in columns">
+            <td>{{column.columnName}}</td>
+            <td>{{column.dataType}}</td>
+            <td><button class="btn btn-danger btn-sm" ng-click="fDeleteClick(column.columnName);">Delete</button></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+        <th colspan="3">
+            Add new column
+        </th>
+        </tr>
+        <tr>
+        <td>
+            <input class="form-control form-control-sm" type="text" ng-model="newColumn.columnName" />
+        </td>
+        <td>
+            <select class="form-control form-control-sm" ng-model="newColumn.dataType">
+            <option value="text">text</option>
+            <option value="int">int</option>
+            <option value="uuid">uuid</option>
+            </select>
+        </td>
+        <td>
+            <button class="btn btn-primary btn-sm" ng-click="fAddClick(newColumn);">Add</button>
+        </td>
+        </tr>
+    </fdoot>
+</table>
