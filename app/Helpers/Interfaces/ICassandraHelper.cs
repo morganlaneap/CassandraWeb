@@ -11,5 +11,7 @@ namespace CassandraWeb.Helpers.Interfaces
         List<Keyspace> GetKeyspaces();
         List<Table> GetTablesInKeyspace(string keyspaceName);
         Table GetTableSchema(string keyspaceName, string tableName);
+        bool AddTableColumn(string keyspaceName, string tableName, Column column);
+        bool DeleteTableColumn(string keyspaceName, string tableName, string columnName);
     }
 }

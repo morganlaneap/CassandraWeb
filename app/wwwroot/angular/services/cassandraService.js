@@ -28,5 +28,30 @@ cassandraWeb.service("CassandraService", function($http) {
         tableName: tableName
       }
     });
-  }
+  };
+  this.addTableColumn = function(connectionId, keyspaceName, tableName, newColumn) {
+    return $http({
+      method: "POST",
+      url: API_URL() + "Cassandra/AddTableColumn",
+      params: {
+        connectionId: connectionId,
+        keyspaceName: keyspaceName,
+        tableName: tableName,
+        columnName: newColumn.columnName,
+        dataType: newColumn.dataType
+      }
+    });
+  };
+  this.deleteTableColumn = function(connectionId, keyspaceName, tableName, columnName) {
+    return $http({
+      method: "POST",
+      url: API_URL() + "Cassandra/DeleteTableColumn",
+      params: {
+        connectionId: connectionId,
+        keyspaceName: keyspaceName,
+        tableName: tableName,
+        columnName: columnName
+      }
+    });
+  };
 });

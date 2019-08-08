@@ -18,6 +18,8 @@ namespace CassandraWeb.Helpers
         const string GetKeyspacesQuery = "SELECT * FROM system_schema.keyspaces;";
         const string GetTablesInKeyspaceQuery = "SELECT * FROM system_schema.tables WHERE keyspace_name = '{0}';";
         const string GetTableSchemaQuery = "SELECT * FROM system_schema.columns WHERE keyspace_name = '{0}' AND table_name = '{1}';";
+        const string AddTableColumnQuery = "ALTER TABLE {0}.{1} ADD {2} {3};";
+        const string DeleteTableColumnQuery = "ALTER TABLE {0}.{1} DROP {2}";
 
         public void Dispose()
         {
@@ -84,6 +86,20 @@ namespace CassandraWeb.Helpers
                              }
             ).ToList();
             return table;
+        }
+
+        public bool AddTableColumn(string keyspaceName, string tableName, Column column)
+        {
+            ISession session = cluster.Connect();
+            session.Execute(string.Format(AddTableColumnQuery, keyspaceName, tableName, column.ColumnName, column.DataType));
+            return true;
+        }
+
+        public bool DeleteTableColumn(string keyspaceName, string tableName, string columnName)
+        {
+            ISession session = cluster.Connect();
+            session.Execute(string.Format(DeleteTableColumnQuery, keyspaceName, tableName, columnName));
+            return true;
         }
     }
 }

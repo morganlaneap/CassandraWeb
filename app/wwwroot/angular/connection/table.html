@@ -26,7 +26,7 @@
                   <tr ng-repeat="column in table.columns">
                       <td>{{column.columnName}}</td>
                       <td>{{column.dataType}}</td>
-                      <td><button class="btn btn-danger btn-sm">Delete</button></td>
+                      <td><button class="btn btn-danger btn-sm" ng-click="deleteTableColumn(column.columnName);">Delete</button></td>
                   </tr>
               </tbody>
               <tfoot>
@@ -37,17 +37,17 @@
                 </tr>
                 <tr>
                   <td>
-                    <input class="form-control form-control-sm" type="text" />
+                    <input class="form-control form-control-sm" type="text" ng-model="newColumn.columnName" />
                   </td>
                   <td>
-                    <select class="form-control form-control-sm">
+                    <select class="form-control form-control-sm"  ng-model="newColumn.dataType">
                       <option value="text">text</option>
                       <option value="int">int</option>
                       <option value="uuid">uuid</option>
                     </select>
                   </td>
                   <td>
-                    <button class="btn btn-primary btn-sm">Add</button>
+                    <button class="btn btn-primary btn-sm" ng-click="addTableColumn();">Add</button>
                   </td>
                 </tr>
               </fdoot>
