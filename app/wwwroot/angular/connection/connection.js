@@ -1,6 +1,7 @@
-cassandraWeb.controller('connectionController', function ($scope, CassandraService, ngToast, $stateParams) {
+cassandraWeb.controller('connectionController', function ($scope, CassandraService, ngToast, $stateParams, $state) {
     $scope.keyspaces = [];
     $scope.selectedKeyspace = null;
+    $scope.stateName = $state.current.name;
 
     $scope.init = function () {
         $scope.connectionId = $stateParams.connectionId;

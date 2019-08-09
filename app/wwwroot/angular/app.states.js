@@ -19,12 +19,22 @@ cassandraWeb.config(function($stateProvider) {
       }
     });
 
-    $stateProvider.state('connectionTable', {
+    $stateProvider.state('connectionKeyspaceTable', {
       url: '/connection/:connectionId/keyspace/:keyspaceName/table/:tableName',
       views: {
         'content': {
           templateUrl: '/angular/connection/table.html',
           controller: 'connectionTableController',
+        }
+      }
+    });
+
+    $stateProvider.state('connectionKeyspaceNewTable', {
+      url: '/connection/:connectionId/keyspace/:keyspaceName/new-table',
+      views: {
+        'content': {
+          templateUrl: '/angular/connection/newTable.html',
+          controller: 'connectionNewTableController',
         }
       }
     });

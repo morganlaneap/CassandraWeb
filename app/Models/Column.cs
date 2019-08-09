@@ -1,4 +1,3 @@
-using System;
 namespace CassandraWeb.Models
 {
     public class Column

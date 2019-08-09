@@ -13,5 +13,6 @@ namespace CassandraWeb.Helpers.Interfaces
         Table GetTableSchema(string keyspaceName, string tableName);
         bool AddTableColumn(string keyspaceName, string tableName, Column column);
         bool DeleteTableColumn(string keyspaceName, string tableName, string columnName);
+        bool CreateNewTable(Table newTable);
     }
 }

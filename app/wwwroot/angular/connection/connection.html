@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h3><i class="fas fa-database"></i>Connection {{ connectionId }}</h3>
+      <h3><i class="fas fa-database"></i>Connection {{ connectionId }} {{stateName}}</h3>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-12">
-      <button class="btn btn-primary btn-sm" ui-sref="dashboard">
+      <button class="btn btn-primary btn-sm" ui-sref="app.dashboard">
         Disconnect
       </button>
       <hr />
@@ -28,6 +28,8 @@
     </div>
     <div class="col-lg-9" ng-show="selectedKeyspace !== null">
       <h4>Tables</h4>
+      <button class="btn btn-primary btn-sm" ui-sref="connectionKeyspaceNewTable({connectionId: connectionId, keyspaceName: selectedKeyspace.keyspaceName})">New Table</button>
+      <br /><br />
       <table
         class="table table-bordered"
         ng-show="selectedKeyspace.tables.length > 0"
@@ -40,7 +42,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="table in selectedKeyspace.tables" >
-            <td><a ui-sref="connectionTable({connectionId: connectionId, keyspaceName: table.keyspaceName, tableName: table.tableName})">{{ table.tableName }}</a></td>
+            <td><a ui-sref="connectionKeyspaceTable({connectionId: connectionId, keyspaceName: table.keyspaceName, tableName: table.tableName})">{{ table.tableName }}</a></td>
             <td style="width: 170px;">2.48 KB</td>
           </tr>
         </tbody>

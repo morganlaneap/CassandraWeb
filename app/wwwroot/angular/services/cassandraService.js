@@ -54,4 +54,12 @@ cassandraWeb.service("CassandraService", function($http) {
       }
     });
   };
+  this.createNewTable = function(newTable) {
+    console.log(newTable);
+    return $http({
+      method: "POST",
+      url: API_URL() + "Cassandra/CreateNewTable",
+      params: newTable
+    });
+  };
 });

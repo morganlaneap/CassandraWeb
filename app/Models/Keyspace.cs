@@ -1,4 +1,3 @@
-using CassandraWeb.Models;
 using System.Collections.Generic;
 namespace CassandraWeb.Models
 {

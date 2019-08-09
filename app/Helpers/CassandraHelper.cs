@@ -20,6 +20,7 @@ namespace CassandraWeb.Helpers
         const string GetTableSchemaQuery = "SELECT * FROM system_schema.columns WHERE keyspace_name = '{0}' AND table_name = '{1}';";
         const string AddTableColumnQuery = "ALTER TABLE {0}.{1} ADD {2} {3};";
         const string DeleteTableColumnQuery = "ALTER TABLE {0}.{1} DROP {2}";
+        const string CreateNewTableQuery = "CREATE TABLE {0}.{1} ( {2} );";
 
         public void Dispose()
         {
@@ -99,6 +100,18 @@ namespace CassandraWeb.Helpers
         {
             ISession session = cluster.Connect();
             session.Execute(string.Format(DeleteTableColumnQuery, keyspaceName, tableName, columnName));
+            return true;
+        }
+
+        public bool CreateNewTable(Table newTable) {
+            ISession session = cluster.Connect();
+            string tableDefinition = "";
+            for (int i = 0; i < newTable.Columns.Count; i++) {
+                Column column = newTable.Columns[i];
+                tableDefinition += $"{column.ColumnName} {column.DataType}";
+                if (i < newTable.Columns.Count - 1) tableDefinition += ",";
+            }
+            session.Execute(string.Format(CreateNewTableQuery, newTable.KeyspaceName, newTable.TableName, tableDefinition));
             return true;
         }
     }
