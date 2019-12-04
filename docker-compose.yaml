@@ -1,0 +1,10 @@
+version: "3"
+services:
+  cassandra-web:
+    container_name: cassandra-web
+    build:
+      context: .
+    volumes:
+      - "./src/wwwroot:/src/wwwroot"
+    ports:
+      - "5000:80"

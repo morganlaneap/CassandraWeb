@@ -43,8 +43,20 @@
           </span>
         </div>
         <div class="card-footer">
-          <button type="button" class="btn btn-sm btn-primary" ui-sref="connection({connectionId: connection.connectionId})">Connect</button>
-          <button type="button" class="btn btn-sm btn-danger" ng-click="deleteConnection(connection.connectionId);">Delete</button>
+          <button
+            type="button"
+            class="btn btn-sm btn-primary"
+            ui-sref="connection({connectionId: connection.connectionId})"
+          >
+            Connect
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-danger"
+            ng-click="deleteConnection(connection.connectionId);"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
@@ -107,7 +119,6 @@
             <input
               type="text"
               ng-model="newConnectionForm.username"
-              required
               class="form-control"
             />
           </div>
@@ -116,7 +127,6 @@
             <input
               type="text"
               ng-model="newConnectionForm.password"
-              required
               class="form-control"
             />
           </div>

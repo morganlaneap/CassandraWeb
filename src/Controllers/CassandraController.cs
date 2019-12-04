@@ -28,7 +28,7 @@ namespace CassandraWeb.Controllers
             }
             catch (Exception exception)
             {
-                return BadRequest(exception);
+                return StatusCode(500, exception.Message);
             }
         }
 
@@ -51,7 +51,7 @@ namespace CassandraWeb.Controllers
             }
             catch (Exception exception)
             {
-                return BadRequest(exception);
+                return StatusCode(500, exception.Message);
             }
         }
 
@@ -74,7 +74,7 @@ namespace CassandraWeb.Controllers
             }
             catch (Exception exception)
             {
-                return BadRequest(exception);
+                return StatusCode(500, exception.Message);
             }
         }
 
@@ -102,7 +102,7 @@ namespace CassandraWeb.Controllers
             }
             catch (Exception exception)
             {
-                return BadRequest(exception);
+                return StatusCode(500, exception.Message);
             }
         }
 
@@ -125,7 +125,7 @@ namespace CassandraWeb.Controllers
             }
             catch (Exception exception)
             {
-                return BadRequest(exception);
+                return StatusCode(500, exception.Message);
             }
         }
 
@@ -148,7 +148,7 @@ namespace CassandraWeb.Controllers
             }
             catch (Exception exception)
             {
-                return BadRequest(exception);
+                return StatusCode(500, exception.Message);
             }
         }
 

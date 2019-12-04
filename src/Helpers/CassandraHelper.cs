@@ -36,12 +36,22 @@ namespace CassandraWeb.Helpers
 
             var options = new SSLOptions(SslProtocols.Tls12, true, ValidateServerCertificate);
             options.SetHostNameResolver((ipAddress) => connection.ContactPoint);
-            cluster = Cluster.Builder()
+            if (connection.Username == "" && connection.Password == "")
+            {
+                cluster = Cluster.Builder()
+                   .WithPort(connection.Port)
+                   .AddContactPoint(connection.ContactPoint)
+                   .Build();
+            }
+            else
+            {
+                cluster = Cluster.Builder()
                    .WithCredentials(connection.Username, connection.Password)
                    .WithPort(connection.Port)
                    .AddContactPoint(connection.ContactPoint)
                    .WithSSL(options)
                    .Build();
+            }
         }
 
         public bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
