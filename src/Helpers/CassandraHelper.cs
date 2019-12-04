@@ -117,10 +117,33 @@ namespace CassandraWeb.Helpers
             return true;
         }
 
-        public RowSet ExecuteQuery(string queryText)
+        public QueryResult ExecuteQuery(string queryText)
         {
             ISession session = cluster.Connect();
-            return session.Execute(queryText);
+            RowSet rowSet = session.Execute(queryText);
+
+            QueryResult queryResult = new QueryResult();
+
+            foreach (var column in rowSet.Columns)
+            {
+                QueryResultColumn queryResultColumn = new QueryResultColumn(column.Name);
+                queryResult.Columns.Add(queryResultColumn);
+            }
+
+            foreach (var row in rowSet.ToList())
+            {
+                QueryResultRow queryResultRow = new QueryResultRow();
+
+                foreach (var rowValue in row.ToList())
+                {
+                    QueryResultRowValue queryResultRowValue = new QueryResultRowValue(rowValue);
+                    queryResultRow.RowValues.Add(queryResultRowValue);
+                }
+
+                queryResult.Rows.Add(queryResultRow);
+            }
+
+            return queryResult;
         }
     }
 }

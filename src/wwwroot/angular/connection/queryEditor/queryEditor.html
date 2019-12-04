@@ -27,4 +27,30 @@
       </div>
     </div>
   </div>
+  <div class="row" ng-show="queryResults != null">
+    <div class="col-lg-12">
+      <div class="card card-body">
+        <table class="table table-bordered" ng-show="queryResults != ''">
+          <thead>
+            <tr>
+              <th ng-repeat="column in queryResults.columns">
+                {{column.columnName}}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="row in queryResults.rows">
+              <td ng-repeat="rowValue in row.rowValues">{{rowValue.value}}</td>
+            </tr>
+            <tr ng-show="queryResults.rows.length == 0">
+              <td class="text-center" colspan="{{queryResults.columns.length}}">
+                No results found.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p ng-show="queryResults == ''">There are no results for this query.</p>
+      </div>
+    </div>
+  </div>
 </div>

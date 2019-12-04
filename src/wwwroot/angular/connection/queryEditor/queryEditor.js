@@ -4,7 +4,7 @@ cassandraWeb.controller("connectionQueryEditorController", function(
   ngToast,
   $stateParams
 ) {
-  $scope.queryText = "";
+  $scope.queryText = "select * from testkeyspace.testtable";
   $scope.queryResults = null;
 
   $scope.init = function() {
@@ -19,7 +19,7 @@ cassandraWeb.controller("connectionQueryEditorController", function(
         console.log(success);
       },
       function(error) {
-        // TODO: add something here
+        alert("Error running query: " + error.data);
       }
     );
   };

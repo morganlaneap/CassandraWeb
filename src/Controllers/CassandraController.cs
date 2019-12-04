@@ -3,6 +3,7 @@ using System;
 using CassandraWeb.Helpers;
 using CassandraWeb.Models;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 namespace CassandraWeb.Controllers
 {
     [Route("api/Cassandra")]
@@ -163,14 +164,14 @@ namespace CassandraWeb.Controllers
 
                     using (CassandraHelper cassandraHelper = new CassandraHelper(connection))
                     {
-                        Cassandra.RowSet queryResult = cassandraHelper.ExecuteQuery(queryText);
+                        QueryResult queryResult = cassandraHelper.ExecuteQuery(queryText);
                         return Ok(queryResult);
                     }
                 }
             }
             catch (Exception exception)
             {
-                return BadRequest(exception);
+                return StatusCode(500, exception.Message);
             }
         }
     }
