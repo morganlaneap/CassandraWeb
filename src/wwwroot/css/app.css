@@ -1,12 +1,22 @@
-h3 > i.fa, h3 > i.fas {
-    margin-right: 10px;
+h3 > i.fa,
+h3 > i.fas {
+  margin-right: 10px;
 }
 
 .page-container {
-    padding: 20px;
+  padding: 20px;
 }
 
 .row {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.scrolling-card {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.fixed-td {
+  min-width: 250px;
 }
