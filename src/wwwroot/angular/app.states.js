@@ -38,4 +38,14 @@ cassandraWeb.config(function($stateProvider) {
       }
     }
   });
+
+  $stateProvider.state("connectionQueryEditor", {
+    url: "/connection/:connectionId/query-editor",
+    views: {
+      content: {
+        templateUrl: "/angular/connection/queryEditor/queryEditor.html",
+        controller: "connectionQueryEditorController"
+      }
+    }
+  });
 });
