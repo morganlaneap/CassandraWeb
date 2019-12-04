@@ -103,16 +103,24 @@ namespace CassandraWeb.Helpers
             return true;
         }
 
-        public bool CreateNewTable(Table newTable) {
+        public bool CreateNewTable(Table newTable)
+        {
             ISession session = cluster.Connect();
             string tableDefinition = "";
-            for (int i = 0; i < newTable.Columns.Count; i++) {
+            for (int i = 0; i < newTable.Columns.Count; i++)
+            {
                 Column column = newTable.Columns[i];
                 tableDefinition += $"{column.ColumnName} {column.DataType}";
                 if (i < newTable.Columns.Count - 1) tableDefinition += ",";
             }
             session.Execute(string.Format(CreateNewTableQuery, newTable.KeyspaceName, newTable.TableName, tableDefinition));
             return true;
+        }
+
+        public RowSet ExecuteQuery(string queryText)
+        {
+            ISession session = cluster.Connect();
+            return session.Execute(queryText);
         }
     }
 }

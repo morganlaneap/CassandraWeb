@@ -17,7 +17,14 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      <p>This is the query editor.</p>
+      <div class="card card-body">
+        <label>Query text (CQL)</label>
+        <textarea class="form-control" rows="7" ng-model="queryText"></textarea
+        ><br />
+        <button class="btn btn-primary btn-sm" ng-click="executeQuery();">
+          Execute
+        </button>
+      </div>
     </div>
   </div>
 </div>

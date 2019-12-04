@@ -90,7 +90,8 @@ namespace CassandraWeb.Controllers
 
                     using (CassandraHelper cassandraHelper = new CassandraHelper(connection))
                     {
-                        cassandraHelper.AddTableColumn(keyspaceName, tableName, new Column() {
+                        cassandraHelper.AddTableColumn(keyspaceName, tableName, new Column()
+                        {
                             ColumnName = columnName,
                             DataType = dataType
                         });
@@ -141,6 +142,29 @@ namespace CassandraWeb.Controllers
                     {
                         cassandraHelper.CreateNewTable(newTable.ToModel());
                         return Ok();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception);
+            }
+        }
+
+        [Route("ExecuteQuery")]
+        [HttpPost]
+        public IActionResult ExecuteQuery(Guid connectionId, string queryText)
+        {
+            try
+            {
+                using (ConnectionHelper connectionHelper = new ConnectionHelper())
+                {
+                    Connection connection = connectionHelper.GetConnectionById(connectionId);
+
+                    using (CassandraHelper cassandraHelper = new CassandraHelper(connection))
+                    {
+                        Cassandra.RowSet queryResult = cassandraHelper.ExecuteQuery(queryText);
+                        return Ok(queryResult);
                     }
                 }
             }

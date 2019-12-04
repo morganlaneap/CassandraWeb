@@ -4,12 +4,24 @@ cassandraWeb.controller("connectionQueryEditorController", function(
   ngToast,
   $stateParams
 ) {
-  $scope.table = null;
+  $scope.queryText = "";
+  $scope.queryResults = null;
 
   $scope.init = function() {
     $scope.connectionId = $stateParams.connectionId;
-    $scope.keyspaceName = $stateParams.keyspaceName;
-    $scope.tableName = $stateParams.tableName;
+  };
+
+  $scope.executeQuery = function() {
+    CassandraService.executeQuery($scope.connectionId, $scope.queryText).then(
+      function(success) {
+        ngToast.create(`Query executed successfully.`);
+        $scope.queryResults = success.data;
+        console.log(success);
+      },
+      function(error) {
+        // TODO: add something here
+      }
+    );
   };
 
   $scope.init();

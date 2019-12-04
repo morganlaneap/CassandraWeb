@@ -29,7 +29,12 @@ cassandraWeb.service("CassandraService", function($http) {
       }
     });
   };
-  this.addTableColumn = function(connectionId, keyspaceName, tableName, newColumn) {
+  this.addTableColumn = function(
+    connectionId,
+    keyspaceName,
+    tableName,
+    newColumn
+  ) {
     return $http({
       method: "POST",
       url: API_URL() + "Cassandra/AddTableColumn",
@@ -42,7 +47,12 @@ cassandraWeb.service("CassandraService", function($http) {
       }
     });
   };
-  this.deleteTableColumn = function(connectionId, keyspaceName, tableName, columnName) {
+  this.deleteTableColumn = function(
+    connectionId,
+    keyspaceName,
+    tableName,
+    columnName
+  ) {
     return $http({
       method: "POST",
       url: API_URL() + "Cassandra/DeleteTableColumn",
@@ -55,11 +65,20 @@ cassandraWeb.service("CassandraService", function($http) {
     });
   };
   this.createNewTable = function(newTable) {
-    console.log(newTable);
     return $http({
       method: "POST",
       url: API_URL() + "Cassandra/CreateNewTable",
       params: newTable
+    });
+  };
+  this.executeQuery = function(connectionId, queryText) {
+    return $http({
+      method: "POST",
+      url: API_URL() + "Cassandra/ExecuteQuery",
+      params: {
+        connectionId: connectionId,
+        queryText: queryText
+      }
     });
   };
 });
