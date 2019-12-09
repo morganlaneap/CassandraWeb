@@ -51,15 +51,17 @@ cassandraWeb.controller("dashboardController", function(
   };
 
   $scope.deleteConnection = function(connectionId) {
-    ConnectionService.deleteConnection(connectionId).then(
-      function(success) {
-        $scope.getConnections();
-        ngToast.create("Connection deleted!");
-      },
-      function(error) {
-        // TODO: add something handle this here
-      }
-    );
+    if (confirm("Are you sure you wish to delete this connection?")) {
+      ConnectionService.deleteConnection(connectionId).then(
+        function(success) {
+          $scope.getConnections();
+          ngToast.create("Connection deleted!");
+        },
+        function(error) {
+          // TODO: add something handle this here
+        }
+      );
+    }
   };
 
   $scope.init();
